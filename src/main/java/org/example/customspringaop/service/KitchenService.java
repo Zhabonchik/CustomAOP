@@ -1,22 +1,26 @@
-package org.example.customspringaop;
+package org.example.customspringaop.service;
 
 import org.example.customspringaop.exceptions.InvalidFoodException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class KitchenService {
 
+    private final Logger serviceLogger = LoggerFactory.getLogger(KitchenService.class);
+
     public void enterKitchen() {
-        System.out.println("Entered the kitchen");
+        serviceLogger.info("Entered the kitchen");
     }
 
     public void leaveKitchen() {
-        System.out.println("Leaved the kitchen");
+        serviceLogger.info("Left the kitchen");
     }
 
     public void takeFoodFromFridge(String food) {
         validateFood(food);
-        System.out.println("Took " + food + " from fridge");
+        serviceLogger.info("Took {} from the fridge", food);
     }
 
     private void validateFood(String food) {
